@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <form id="data-form">
+    <div class="container">
+        <h1>ORDERS</h1>
+        <div class="input-group">
+            <label for="customer-select">Select Customer:</label>
+            <select id="customer-select">
+                <!-- Options will be populated via JavaScript -->
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="country-select">Select Country:</label>
+            <select id="country-select">
+                <!-- Options will be populated via JavaScript -->
+            </select>
+        </div>
+
+        <button id="search-button">Search</button>
+
+        <div id="result-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer ID</th>
+                        <th>Employee ID</th>
+                        <th>Order Date</th>
+                        <th>Required Date</th>
+                        <th>Shipped Date</th>
+                        <th>Ship Via</th>
+                        <th>Freight</th>
+                        <th>Ship Name</th>
+                        <th>Ship Address</th>
+                        <th>Ship City</th>
+                        <th>Ship Region</th>
+                        <th>Ship Postal Code</th>
+                        <th>Ship Country</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+    </div>
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
