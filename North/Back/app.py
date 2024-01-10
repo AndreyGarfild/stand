@@ -42,6 +42,7 @@ def get_customers():
         return jsonify({"error": "Database error"}), 500
 
 def get_countries():
+    return jsonify("Pong!")
     try:
         # Creating DB connection
         conn = psycopg2.connect(
@@ -131,4 +132,4 @@ def search():
     return get_search(customer_id, ship_country)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80)
+    app.run(debug=True, port=5000, host='0.0.0.0')
