@@ -5,8 +5,8 @@ async function fetchData(url) {
 }
 
 async function populateDropdowns() {
-    const customers = await fetchData('http://127.0.0.1:5000/api/customers');
-    const countries = await fetchData('http://127.0.0.1:5000/api/countries');
+    const customers = await fetchData('http://127.0.0.1:5001/api/customers');
+    const countries = await fetchData('http://127.0.0.1:5001/api/countries');
 
     // Assuming the API responses are in the format ["Andrey", "Carl", "Jonson"]
 
@@ -34,7 +34,7 @@ populateDropdowns();
 
 async function retrieve_search(customer, country) {
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/search', {
+        const response = await fetch('http://127.0.0.1:5001/api/search', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

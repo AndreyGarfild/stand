@@ -14,7 +14,7 @@ def get_customers():
         user="north-back",
         password="123",
         host="localhost",
-        port="5432"
+        port="5002"
 )
         # Create a cursor object to execute SQL queries
         cur = conn.cursor()
@@ -43,18 +43,20 @@ def get_customers():
 
 def get_countries():
     try:
+        
         # Creating DB connection
         conn = psycopg2.connect(
         dbname="north-back",
         user="north-back",
         password="123",
-        host="db-back-north",
-        port="5432"
-)
+        host="localhost",
+        port="5002"
+)       
         # Create a cursor object to execute SQL queries
         cur = conn.cursor()
 
         # Execute the SQL query to fetch customers from the customers_view
+        
         cur.execute("SELECT * FROM countries_view")
 
         # Fetch all customer records
@@ -84,8 +86,8 @@ def get_search(customer_id, ship_country):
             dbname="north-back",
             user="north-back",
             password="123",
-            host="db-back-north",
-            port="5432"
+            host="localhost",
+            port="5002"
         )
 
         # Create a cursor object to execute SQL queries
