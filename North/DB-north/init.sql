@@ -3905,6 +3905,21 @@ ALTER TABLE ONLY customer_customer_demo
 ALTER TABLE ONLY employees
     ADD CONSTRAINT fk_employees_employees FOREIGN KEY (reports_to) REFERENCES employees;
 
+
+
+
+-- Views for back-end
+
+CREATE VIEW customers_view AS
+SELECT DISTINCT customer_id
+FROM customers;
+
+
+CREATE VIEW countries_view AS
+SELECT DISTINCT ship_country
+FROM orders;
+
+
     
 --
 -- PostgreSQL database dump complete

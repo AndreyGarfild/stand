@@ -13,7 +13,7 @@ def get_customers():
         dbname="north-back",
         user="north-back",
         password="123",
-        host="localhost",
+        host="db-north",
         port="5002"
 )
         # Create a cursor object to execute SQL queries
@@ -49,7 +49,7 @@ def get_countries():
         dbname="north-back",
         user="north-back",
         password="123",
-        host="localhost",
+        host="db-north",
         port="5002"
 )       
         # Create a cursor object to execute SQL queries
@@ -86,7 +86,7 @@ def get_search(customer_id, ship_country):
             dbname="north-back",
             user="north-back",
             password="123",
-            host="localhost",
+            host="db-north",
             port="5002"
         )
 
