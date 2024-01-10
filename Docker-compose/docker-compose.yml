@@ -2,7 +2,7 @@ version: '3'
 
 services:
   front-north:
-    image: romtretjakov2017/front-north:latest
+    image: front-north
     ports:
       - "5000:5000"
     logging:
@@ -12,7 +12,7 @@ services:
         max-file: "3"
 
   back-north:
-    image: romtretjakov2017/back-north:latest
+    image: back-north
     ports:
       - "5001:5001"
     logging:
@@ -22,7 +22,7 @@ services:
         max-file: "3"
 
   db-north:
-    image: romtretjakov2017/db-north:latest
+    image: db-north
     ports:
       - "5002:5002"
     logging:

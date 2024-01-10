@@ -1,12 +1,12 @@
-async function fetchData(url) {
-    const response = await fetch(url);
+async function fetchData(endpoint) {
+    const response = await fetch(`/api/${endpoint}`);
     const data = await response.json();
     return data;
 }
 
 async function populateDropdowns() {
-    const customers = await fetchData('http://back-north:5001/api/customers');
-    const countries = await fetchData('http://back-north:5001/api/countries');
+    const customers = await fetchData('customers');
+    const countries = await fetchData('countries');
 
     // Assuming the API responses are in the format ["Andrey", "Carl", "Jonson"]
 
@@ -34,7 +34,7 @@ populateDropdowns();
 
 async function retrieve_search(customer, country) {
     try {
-        const response = await fetch('http://back-north:5001/api/search', {
+        const response = await fetch('/api/search', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
