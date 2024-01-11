@@ -19,7 +19,7 @@ async function populateDropdowns() {
         customerSelect.appendChild(option);
     });
 
-    // Populate country dropdown
+    /// Populate country dropdown
     const countrySelect = document.getElementById("country-select");
     countries.forEach(country => {
         const option = document.createElement("option");
