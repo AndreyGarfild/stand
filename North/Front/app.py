@@ -11,19 +11,19 @@ def home():
 
 @app.route('/api/customers', methods=['GET'])
 def get_customers():
-    response = requests.get('http://back-north:5001/api/customers')
+    response = requests.get('http://back-north:5011/api/customers')
     return jsonify(response.json()), response.status_code
 
 @app.route('/api/countries', methods=['GET'])
 def get_countries():
-    response = requests.get('http://back-north:5001/api/countries')
+    response = requests.get('http://back-north:5011/api/countries')
     return jsonify(response.json()), response.status_code
 
 @app.route('/api/search', methods=['POST'])
 def search():
     data = request.json
-    response = requests.post('http://back-north:5001/api/search', json=data)
+    response = requests.post('http://back-north:5011/api/search', json=data)
     return jsonify(response.json()), response.status_code
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5000, host='0.0.0.0')
+    app.run(debug=False, port=5010, host='0.0.0.0')

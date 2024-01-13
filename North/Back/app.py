@@ -14,7 +14,7 @@ def get_customers():
         user="north-back",
         password="123",
         host="db-north",
-        port="5002"
+        port="5012"
 )
         # Create a cursor object to execute SQL queries
         cur = conn.cursor()
@@ -50,7 +50,7 @@ def get_countries():
         user="north-back",
         password="123",
         host="db-north",
-        port="5002"
+        port="5012"
 )       
         # Create a cursor object to execute SQL queries
         cur = conn.cursor()
@@ -87,7 +87,7 @@ def get_search(customer_id, ship_country):
             user="north-back",
             password="123",
             host="db-north",
-            port="5002"
+            port="5012"
         )
 
         # Create a cursor object to execute SQL queries
@@ -133,4 +133,4 @@ def search():
     return get_search(customer_id, ship_country)
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5001, host='0.0.0.0')
+    app.run(debug=False, port=5011, host='0.0.0.0')
