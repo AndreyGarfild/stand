@@ -21,6 +21,7 @@ services:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     networks:
       - elk
+      - elktoservices
     depends_on:
       - elasticsearch
 
@@ -37,3 +38,5 @@ services:
 networks:
   elk:
     driver: bridge
+  elktoservices:
+    external: true

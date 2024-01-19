@@ -1,6 +1,24 @@
-from flask import Flask, jsonify, request
+from flask import Flask, json, jsonify, request, render_template, after_this_request
 import psycopg2
 from flask_cors import CORS
+import requests
+import time
+
+
+# Logger
+def send_log_to_logstash(log_data):
+    logstash_url = 'http://logstash:5000'
+    try:
+        lg_dt = log_data
+        lg_dt["hostname"] = "back-north-service"
+        response = requests.post(logstash_url, json=lg_dt, timeout=2)
+        print("Log sent to Logstash:", response.status_code, response.text)  # Debugging line
+    except requests.exceptions.ConnectionError:
+        print("Logstash is not reachable (ConnectionError).")
+    except requests.exceptions.Timeout:
+        print("Logstash connection timed out.")
+    except Exception as e:
+        print(f"Unexpected error when sending log to Logstash: {e}")
 
 app = Flask(__name__)
 CORS(app)
@@ -110,6 +128,45 @@ def get_search(customer_id, ship_country):
         # Handle database errors
         print("Error connecting to the database:", e)
         return jsonify({"error": "Database error"}), 500
+
+#Logger
+@app.before_request
+
+def before_request():
+    request.start_time = time.time()  # Store start time to calculate duration
+
+@app.after_request
+def after_request(response):
+    # Check if response is in direct passthrough mode
+    if not response.is_sequence:
+        log_data = {
+            "path": request.path,
+            "request_body": "N/A for static resources",
+            "response_body": "N/A for static resources",
+            "status_code": response.status_code,
+            "duration": time.time() - request.start_time
+        }
+    else:
+        # Capture request data
+        request_data = request.get_json() if request.is_json else request.data.decode()
+        
+        # Capture response data
+        response_data = response.get_json() if response.is_json else response.data.decode()
+
+        # Prepare log data
+        log_data = {
+            "path": request.path,
+            "request_body": json.dumps(request_data) if isinstance(request_data, dict) else request_data,
+            "response_body": response_data,
+            "status_code": response.status_code,
+            "duration": time.time() - request.start_time
+        }
+
+    # Send log data to Logstash
+    send_log_to_logstash(log_data)
+
+    return response
+
 
 # Customers endpoint
 @app.route('/api/customers', methods=['GET'])

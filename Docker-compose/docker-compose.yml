@@ -5,13 +5,21 @@ services:
     image: front-north
     ports:
       - "5010:5010"
-
+    networks:
+      - elktoservices
 
   back-north:
     image: back-north
+    networks:
+      - elktoservices
 
 
   db-north:
     image: db-north
+    networks:
+      - elktoservices
 
 
+networks:
+  elktoservices:
+    external: true
